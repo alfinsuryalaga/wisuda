@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\ServiceProvider;
+use Filament\Support\Facades\FilamentView;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        Model::unguard();
+        // parent::register();
+        // FilamentView::registerRenderHook(
+        //     'panels::body.end',
+        //     fn (): string => Blade::render("@vite('resources/js/app.js')")
+        // );
+    }
+}
