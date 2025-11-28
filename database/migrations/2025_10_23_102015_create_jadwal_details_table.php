@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('jadwal_detail', function (Blueprint $table) {
             $table->id();
             $table->foreignId('jadwal_id')->constrained('jadwal')->onDelete('cascade');
-            $table->string('tingkat', 255);
-            $table->string('prodi', 255);
+            $table->foreignId('prodi_id')->constrained('prodi');
             $table->foreignId('sesi_id')->constrained('sesi');
             $table->date('tgl_undangan');
             $table->date('tgl_toga');
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jadwal_details');
+        Schema::dropIfExists('jadwal_detail');
     }
 };

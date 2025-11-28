@@ -17,4 +17,8 @@ class JadwalDetail extends Model
     {
         return $this->belongsTo(Sesi::class);
     }
+    public function prodi(): BelongsTo
+    {
+        return $this->belongsTo(Prodi::class)->orderBy('tingkat_id','asc',)->orderBy('fakultas_id','asc',)->orderBy('kode_prodi','asc',);
+    }
 }

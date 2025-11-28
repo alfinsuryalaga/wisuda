@@ -26,8 +26,10 @@ class SesiResource extends Resource
     protected static ?string $recordTitleAttribute = 'Sesi';
 
     protected static ?string $navigationLabel = 'Sesi';
-    
+
     protected static string | UnitEnum | null $navigationGroup = 'Pengaturan';
+
+    protected static bool $shouldRegisterNavigation = false;
 
     public static function form(Schema $schema): Schema
     {

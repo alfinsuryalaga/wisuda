@@ -15,25 +15,9 @@ class TarifForm
     {
         return $schema
             ->components([
-                Select::make('jadwal_id')
-                    ->relationship('jadwal', 'id')
-                    ->required()
-                    ->Label('Jadwal'),
-                Select::make('thn_akademik')
-                    ->relationship('jadwal', 'thn_akademik')
-                    ->required()
-                    ->Label('Tahun Akademik'),
-                Select::make('gelombang')
-                    ->relationship('jadwal', 'gelombang')
-                    ->required()
-                    ->Label('Gelombang'),
-                Select::make('tingkat')
-                ->options([
-                        'A' => 'Doktor',
-                        'B' => 'Magister',
-                        'C' => 'Sarjana',
-                        'J' => 'Profesi',
-                    ]),
+                Select::make('tingkat_id')
+                    ->relationship('tingkat', 'nama_tingkat')
+                    ->required(),
                 TextInput::make('tarif'),
             ]);
     }

@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tarif', function (Blueprint $table) {
+        Schema::create('tingkat', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('jadwal_id')->constrained('jadwal')->onDelete('cascade');
-            $table->foreignId('tingkat_id')->constrained('tingkat')->onDelete('cascade');
-            $table->string('tarif')->nullable();
+            $table->string('kode_tingkat');
+            $table->string('nama_tingkat');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tarif');
+        Schema::dropIfExists('tingkat');
     }
 };

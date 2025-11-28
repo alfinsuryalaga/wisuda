@@ -28,6 +28,7 @@ class TarifResource extends Resource
     protected static ?string $pluralModelLabel = 'Tarif';
     protected static ?string $modelLabel = 'Tarif';
     protected static string|UnitEnum|null $navigationGroup = 'Pengaturan';
+    protected static bool $shouldRegisterNavigation = false;
 
     public static function form(Schema $schema): Schema
     {

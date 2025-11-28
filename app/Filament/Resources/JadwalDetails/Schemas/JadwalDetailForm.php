@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\JadwalDetails\Schemas;
 
+use App\Models\ApiData;
 use DateTime;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\Select;
@@ -9,35 +10,20 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 
+use function Laravel\Prompts\select;
+
 class JadwalDetailForm
 {
     public static function configure(Schema $schema): Schema
     {
+
         return $schema
             ->components([
-                Select::make('jadwal_id')
-                    ->label('Tahun Akademik')
-                    ->relationship('jadwal', 'thn_akademik')
+                Select::make('prodi_id')
+                    ->relationship('prodi', 'nama_prodi')
+                    ->searchable()
+                    ->preload()
                     ->required(),
-                Select::make('jadwal_id')
-                    ->label('Gelombang')
-                    ->relationship('jadwal', 'gelombang')
-                    ->required(),
-                TextInput::make('tingkat')
-                    ->required(),
-                TextInput::make('prodi')
-                    ->required(),
-                Select::make('sesi_id')
-                    ->relationship('sesi', 'id')
-                    ->required()
-                    ->createOptionForm([
-                TextInput::make('sesi')
-                    ->required(),
-                DateTimePicker::make('tanggal_mulai')
-                    ->required(),
-                DateTimePicker::make('tanggal_akhir')
-                    ->required(),
-                ]),
                 DatePicker::make('tgl_undangan')
                     ->required(),
                 DatePicker::make('tgl_toga')
@@ -46,6 +32,19 @@ class JadwalDetailForm
                     ->required(),
                 DatePicker::make('tanggal_pelaksanaan')
                     ->required(),
+                Select::make('sesi_id')
+                    ->relationship('sesi', 'id')
+                    ->searchable()
+                    ->preload()
+                    // ->createOptionForm([
+                    //     TextInput::make('sesi')
+                    //         ->required(),
+                    //     DateTimePicker::make('tanggal_mulai')
+                    //         ->required(),
+                    //     DateTimePicker::make('tanggal_akhir')
+                    //         ->required(),
+                    //     ])
+                        ,
             ]);
     }
 }

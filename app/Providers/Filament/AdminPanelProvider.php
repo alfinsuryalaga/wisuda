@@ -8,6 +8,7 @@ use Filament\Pages\Dashboard;
 use Filament\Support\Colors\Color;
 use Filament\Widgets\AccountWidget;
 use Illuminate\Support\Facades\Blade;
+use Filament\Navigation\NavigationGroup;
 use Filament\Widgets\FilamentInfoWidget;
 use Filament\Http\Middleware\Authenticate;
 use Illuminate\Session\Middleware\StartSession;
@@ -56,9 +57,16 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
+            ->sidebarCollapsibleOnDesktop()
             // ->renderHook('panels::body.end',
             //     fn (): string => Blade::render("@vite('resources/js/app.js')")
             // )
-            ;
+
+
+            ->navigationGroups([
+                'Pengaturan',
+                'Master Data',
+            ]);
     }
+
 }

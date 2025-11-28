@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Filament\Resources\Jadwals\Pages;
+namespace App\Filament\Resources\Bukus\Pages;
 
-use App\Filament\Resources\Jadwals\JadwalResource;
+use App\Filament\Resources\Bukus\BukuResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
-class ListJadwals extends ListRecords
+class ListBukus extends ListRecords
 {
-    protected static string $resource = JadwalResource::class;
+    protected static string $resource = BukuResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-
             CreateAction::make(),
         ];
     }

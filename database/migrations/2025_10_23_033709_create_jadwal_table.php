@@ -25,6 +25,7 @@ return new class extends Migration
             $table->date('awal_pelaksanaan');
             $table->date('akhir_pelaksanaan');
             $table->string('tempat_pelaksanaan', 255);
+            $table->string('active')->nullable();
             $table->timestamps();
         });
     }

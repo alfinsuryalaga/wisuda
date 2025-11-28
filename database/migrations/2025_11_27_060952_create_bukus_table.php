@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tarif', function (Blueprint $table) {
+        Schema::create('buku', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('jadwal_id')->constrained('jadwal')->onDelete('cascade');
-            $table->foreignId('tingkat_id')->constrained('tingkat')->onDelete('cascade');
-            $table->string('tarif')->nullable();
+            $table->foreignId('jadwal_id')->constrained('jadwal')->cascadeOnDelete();
+            $table->string('nama_buku');
+            $table->string('attachment');
             $table->timestamps();
         });
     }
@@ -25,6 +25,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tarif');
+        Schema::table('buku', function (Blueprint $table) {
+        if (Schema::hasColumn('buku', 'attachment')) {
+            $table->dropColumn('attachment');
+        }
+        });
     }
 };

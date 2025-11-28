@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Tarif extends Model
+class Buku extends Model
 {
-    protected $table = 'tarif';
+    protected $table = 'buku';
+
+
     public function jadwal(): BelongsTo
     {
         return $this->belongsTo(Jadwal::class);
-    }
-    public function tingkat(): BelongsTo
-    {
-        return $this->belongsTo(Tingkat::class);
     }
 }

@@ -2,14 +2,20 @@
 
 namespace App\Filament\Resources\Jadwals\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
+use App\Models\Jadwal;
+use Filament\Tables\Table;
+use function Livewire\before;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Table;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\CreateAction;
+use Filament\Actions\DeleteAction;
 
 use function Laravel\Prompts\text;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 
 class JadwalsTable
 {
@@ -29,13 +35,18 @@ class JadwalsTable
                 TextColumn::make('awal_pelaksanaan')->label('Awal Pelaksanaan')->date()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('akhir_pelaksanaan')->label('Akhir Pelaksanaan')->date()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('tempat_pelaksanaan')->label('Tempat Pelaksanaan')->sortable()->searchable()->toggleable(isToggledHiddenByDefault: true),
+                ToggleColumn::make('active')->label('Aktif')->sortable()->toggleable()
+                ,
             ])
             ->filters([
-                
+
             ])
+
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ActionGroup::make([
+                    EditAction::make(),
+                    DeleteAction::make(),
+                ]),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

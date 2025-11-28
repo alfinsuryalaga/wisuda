@@ -1,41 +1,25 @@
 <?php
 
-namespace App\Filament\Resources\JadwalDetails\Tables;
+namespace App\Filament\Resources\Bukus\Tables;
 
 use Filament\Tables\Table;
+use GuzzleHttp\Promise\Create;
 use Filament\Actions\EditAction;
-use Filament\Actions\ActionGroup;
 use Filament\Actions\CreateAction;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\AssociateAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\DissociateAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Actions\DissociateBulkAction;
 
-class JadwalDetailsTable
+class BukusTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('prodi.nama_prodi')
+                TextColumn::make('nama_buku')
                     ->searchable(),
-                TextColumn::make('sesi.id')
-                    ->searchable()
-                    ->placeholder('Belum Ditentukan'),
-                TextColumn::make('tgl_undangan')
-                    ->date()
-                    ->sortable(),
-                TextColumn::make('tgl_toga')
-                    ->date()
-                    ->sortable(),
-                TextColumn::make('tempat_ambil')
+                TextColumn::make('attachment')
                     ->searchable(),
-                TextColumn::make('tanggal_pelaksanaan')
-                    ->date()
-                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -45,17 +29,14 @@ class JadwalDetailsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
             ->headerActions([
                 CreateAction::make(),
             ])
+            ->filters([
+                //
+            ])
             ->recordActions([
-                ActionGroup::make([
-                    EditAction::make(),
-                    DeleteAction::make(),
-                ]),
+                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

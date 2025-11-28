@@ -2,12 +2,17 @@
 
 namespace App\Filament\Resources\Tarifs\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
+use App\Models\Tingkat;
+use Dom\Text;
+use Filament\Tables\Table;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\CreateAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Table;
 
 class TarifsTable
 {
@@ -15,13 +20,7 @@ class TarifsTable
     {
         return $table
             ->columns([
-                TextColumn::make('jadwal.id')
-                    ->searchable(),
-                TextColumn::make('thn_akademik')
-                    ->searchable(),
-                TextColumn::make('gelombang')
-                    ->searchable(),
-                TextColumn::make('tingkat')
+                TextColumn::make('tingkat.nama_tingkat')
                     ->searchable(),
                 TextColumn::make('tarif')
                     ->searchable(),
@@ -37,9 +36,38 @@ class TarifsTable
             ->filters([
                 //
             ])
+            ->headerActions([
+                CreateAction::make()
+                // ->after(function ($record) {
+                //     $record->update([
+                //         'nama_tingkat' => match ($record->tingkat) {
+                //             'A' => 'Doktor',
+                //             'B' => 'Magister',
+                //             'C' => 'Sarjana',
+                //             'J' => 'Profesi',
+                //         },
+                //     ]);
+                // })
+                ,
+            ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ActionGroup::make([
+                    EditAction::make()
+                    // ->after(function ($record) {
+                    //     $record->update([
+                    //         'nama_tingkat' => match ($record->tingkat) {
+                    //             'A' => 'Doktor',
+                    //             'B' => 'Magister',
+                    //             'C' => 'Sarjana',
+                    //             'J' => 'Profesi',
+                    //         },
+                    //     ]);
+                    // })
+                    ,
+                    DeleteAction::make(),
+                ]),
+                // ViewAction::make(),
+
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
